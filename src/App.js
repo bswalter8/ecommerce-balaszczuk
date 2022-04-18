@@ -1,11 +1,11 @@
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import Main   from "./components/Main"
+import ItemListContainer   from "./components/ItemListContainer"
 
 const App =() => {
     return (<>
                 <Header/>
-                <Main/>
+                <ItemListContainer greeting="Hola, aqui estará el catalogo de libros"/>
                 <Footer/>
             </>
     )

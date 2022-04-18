@@ -1,13 +1,13 @@
-import Nav from "./NavBar"
+import Navbar from "./NavBar"
 import styled from 'styled-components'
 
 const Header_css = styled.header`
     background-color: rgb(231, 222, 222);
-    position: absolute;
+  //  position: absolute;
     overflow: hidden;
     display: flex; 
-    justify-content: space-around;
-    align-items: flex-end;
+    justify-content: flex-start;
+    align-items: center;
     margin: 0;
     height: 15%;  
     width: 100%;
@@ -19,16 +19,23 @@ const Header_css = styled.header`
       
     }
     & h1{
+    
     font-family: 'BIZ UDPMincho', serif;
     font-size: 2em;
-    margin: 1.2em;
+    margin: .2em;
+  }
+  & Nav{
+    display: flex;
+    justify-content: space-around;
+    width: 80vw;
+  
   }
 `
 
 const Header = () =>{
     return (<Header_css>
-
-                <Nav/>
+                <h1>Libreria de Babel</h1>
+                <Navbar header/>
             </Header_css>)
 }
 

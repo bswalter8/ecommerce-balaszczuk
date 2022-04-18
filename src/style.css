@@ -2,3 +2,21 @@
     margin: 0;   
     padding: 0;
   }
+  
+  html , body , #root {
+    height: 100vh;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  #root > main {
+    flex-grow: 1;
+  }  
+
+  #root > footer {
+    padding: .5rem;
+  }
