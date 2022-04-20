@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import ItemCount from './ItemCount'
 
 const Main_css = styled.main`
     display: flex;
@@ -8,13 +9,20 @@ const Main_css = styled.main`
 
 `
 
+
 const Main = (props) => {
+
+  const addItem = (cant) =>{
+    alert(cant)   
+  }
+
   return (
     <Main_css>
       
       <p>{props.greeting}</p>
-    
+      <ItemCount stock="4" initial="1" onAdd={addItem}/>
     </Main_css>
+    
   )
 }
 
