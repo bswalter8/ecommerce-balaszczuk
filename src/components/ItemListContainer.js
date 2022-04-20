@@ -21,6 +21,7 @@ const Main = (props) => {
       
       <p>{props.greeting}</p>
       <ItemCount stock="4" initial="1" onAdd={addItem}/>
+      <ItemCount stock="0" initial="0" onAdd={addItem}/>
     </Main_css>
     
   )
