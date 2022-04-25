@@ -5,7 +5,7 @@ import ItemListContainer   from "./components/ItemListContainer"
 const App =() => {
     return (<>
                 <Header/>
-                <ItemListContainer greeting="Hola, aqui estará el catalogo de libros"/>
+                <ItemListContainer greeting="Esperando informacion"/>
                 <Footer/>
             </>
     )

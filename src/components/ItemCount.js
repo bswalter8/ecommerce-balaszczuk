@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import Modal from "./Modal"
 
 const Itemcount_css = styled.div`
     display: flex;
@@ -33,6 +34,9 @@ const ItemCount = ({stock, initial, onAdd}) => {
     initial = parseInt(initial)    
     stock = parseInt(stock)
     const [contador, setContador] = useState(initial);
+    const [contadorAdd, setContadorAdd] = useState();
+    const [confirmado, setConfirmado] = useState(false);
+    
     
     const handleClick = (direction) =>{      
 
@@ -47,21 +51,47 @@ const ItemCount = ({stock, initial, onAdd}) => {
     }
 
     const handleClick_add = () =>{
-        if (contador != 0){onAdd(contador)}        
+        if (contador != 0){
+            onAdd(contador)
+            setContadorAdd(contador)
+            confirmacion(true)
+        }        
     }
 
-    return (
-             <Itemcount_css>
-                 <p>Stock: {stock}</p>
-                 <Items_css>
+    const confirmacion = (boolean) =>{
+        setConfirmado(boolean)
+    }
+
+    if(!confirmado){
+        return (          
+            <Itemcount_css>
+                <p>Stock: {stock}</p>
+                <Items_css>
+                   <Button_css onClick={() => handleClick("+")}>+</Button_css>
+                   <p>Cantidad: {contador}</p>                  
+                   <Button_css onClick={() => handleClick("-")}>-</Button_css>
+                </Items_css>
+                <Button_css onClick={handleClick_add} >Agregar al carrito</Button_css>
+            </Itemcount_css>                
+        )
+    } else { 
+        return(
+            <>
+                <Itemcount_css>
+                    <p>Stock: {stock}</p>
+                    <Items_css>
                     <Button_css onClick={() => handleClick("+")}>+</Button_css>
                     <p>Cantidad: {contador}</p>                  
                     <Button_css onClick={() => handleClick("-")}>-</Button_css>
-                 </Items_css>
-                 <Button_css onClick={handleClick_add} >Agregar al carrito</Button_css>
-             </Itemcount_css>           
-        
-    )
+                    </Items_css>
+                    <Button_css >Agregar al carrito</Button_css>                            
+                </Itemcount_css> 
+                <Modal text={contadorAdd}  onSet={confirmacion} time={2000}/>                              
+            </>             
+        )     
+    }
+
+ 
   }
   
   export default ItemCount
