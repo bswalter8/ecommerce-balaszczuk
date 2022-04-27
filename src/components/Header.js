@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 const Header_css = styled.header`
     background-color: rgb(231, 222, 222);
-  //  position: absolute;
+    position: fixed;
+    top: 0;
     overflow: hidden;
     display: flex; 
     justify-content: flex-start;
