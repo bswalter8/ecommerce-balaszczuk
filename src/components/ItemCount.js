@@ -5,26 +5,32 @@ import Modal from "./Modal"
 const Itemcount_css = styled.div`
     display: flex;
     flex-direction: column;
+
     width: 20%;
-    border: solid;
-    padding: 0.4rem;
-    font-size: 1rem;
-    align-items: center;
     
+    padding: 0.4rem;
+    font-size: .8em;
+    align-items: center;
+    text-align: center ;
 `
 
 const Items_css = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
+    font-size: .9rem;
     justify-content: space-around;
     padding-bottom: .2rem;
+   
     
 `
 
 const Button_css = styled.button`
     font-size: .9rem;
     padding: .2rem;
+    margin-left: .2rem;
+    margin-right: .2rem;   
+    width: max-content;
     color: black;
     background-color: transparent;
 `
@@ -65,10 +71,10 @@ const ItemCount = ({stock, initial, onAdd}) => {
     if(!confirmado){
         return (          
             <Itemcount_css>
-                <p>Stock: {stock}</p>
+                <p>Stock {stock}</p>
                 <Items_css>
                    <Button_css onClick={() => handleClick("+")}>+</Button_css>
-                   <p>Cantidad: {contador}</p>                  
+                   <p>Cantidad {contador}</p>                  
                    <Button_css onClick={() => handleClick("-")}>-</Button_css>
                 </Items_css>
                 <Button_css onClick={handleClick_add} >Agregar al carrito</Button_css>
@@ -78,10 +84,10 @@ const ItemCount = ({stock, initial, onAdd}) => {
         return(
             <>
                 <Itemcount_css>
-                    <p>Stock: {stock}</p>
+                    <p>Stock {stock}</p>
                     <Items_css>
                     <Button_css onClick={() => handleClick("+")}>+</Button_css>
-                    <p>Cantidad: {contador}</p>                  
+                    <p>Cantidad {contador}</p>                  
                     <Button_css onClick={() => handleClick("-")}>-</Button_css>
                     </Items_css>
                     <Button_css >Agregar al carrito</Button_css>                            

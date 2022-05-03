@@ -16,11 +16,10 @@ const List_css = styled.section`
 
 const ItemList =({items, onAdd}) => {
     return (<List_css>
-              {items.map((producto, i)=>{
+              {items.map((libro, i)=>{
                 return (                
-                    <li key={producto.id}> 
-                       <Item id={producto.id} nombre={producto.nombre} precio={producto.precio} imagen={producto.img}/>
-                      {/* <ItemCount stock="4" initial="1" onAdd={onAdd}/>*/}
+                    <li key={libro.id}> 
+                    <Item libro={libro} onAdd={onAdd}/>
                     </li>                                 
                )
                 })}

@@ -1,15 +1,25 @@
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import Carrito from "./components/Carrito"
 import ItemListContainer   from "./components/ItemListContainer"
 import ItemDetailContainer from "./components/ItemDetailContainer"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 const App =() => {
-    return (<>
+    return (<BrowserRouter>     
                 <Header/>
-                <ItemListContainer greeting="Esperando informacion"/>
-                <ItemDetailContainer/>
+                <main>
+                  <Routes>
+                    <Route path="/" element={<ItemListContainer/>}></Route>
+                    <Route path="/categorias/:nombrecategoria" element={<ItemListContainer/>}></Route>
+                    
+                    <Route path="/libro/:id" element={<ItemDetailContainer/>}></Route>
+                    <Route path="/carrito" element={<Carrito/>}></Route>                    
+                    
+                  </Routes>
+                </main>
                 <Footer/>
-            </>
+            </BrowserRouter>
     )
   }
   

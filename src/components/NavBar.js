@@ -1,4 +1,4 @@
-//import React from 'react'
+import { Link } from 'react-router-dom'
 import Carrito from './Carrito'
 
 
@@ -7,10 +7,11 @@ const Navbar = (props) => {
   if (props.header){
     return (
       <nav>
-          <a href=""> Clasicos</a> 
-          <a href=""> Poesia</a>
-          <a href=""> Modernos</a>
-          <a href=""> Contemporaneos</a>    
+          <Link to={"/"}>Todo el catalogo</Link>
+          <Link to={"/categorias/clasicos"}>Clasicos</Link>
+          <Link to={"/categorias/poesia"}>Poesia</Link>
+          <Link to={"/categorias/modernos"}>Modernos</Link>
+          <Link to={"/categorias/contemporaneos"}>Contemporaneos</Link>
           <Carrito/>           
       </nav> 
 )

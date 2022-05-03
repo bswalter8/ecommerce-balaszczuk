@@ -3,6 +3,10 @@ import styled from 'styled-components'
 
 
 const Item_css = styled.div`
+    display : flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
    margin: 1rem;
    background-color: #e9ebea;
    border-radius: 2px;
@@ -13,17 +17,16 @@ const Item_css = styled.div`
    & img{
     width: 200px;
     height: 300px;
-    margin: 2rem ;
   }
 
 
 `
-const ItemDetail = ({nombre, precio, imagen, descripcion}) => {
+const ItemDetail = ({libro}) => {
   return (<Item_css>
-          <div>Nombre: {nombre}</div>
-          <div>Precio: {precio}</div>
-          <div>Descripcion: {descripcion}</div>
-          <img src={require(`./../img/${imagen}`)}/>
+          <img src={require(`./../img/${libro.img}`)}/>
+          <p>Nombre: {libro.nombre}</p>
+          <p>Precio: ${libro.precio}</p>
+
         </Item_css>
   )
 }

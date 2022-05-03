@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-
+import ItemCount from './ItemCount'
+import { useNavigate } from "react-router-dom"
 
 const Item_css = styled.div`
    display : flex;
@@ -24,14 +25,21 @@ const Item_css = styled.div`
 
 `
 
-const Item =({id, nombre, precio, imagen}) => {
 
+const Item =({libro, onAdd}) => {
+
+    const navigate = useNavigate()
+    const handleClick = () => {
+      navigate(`/libro/${libro.id}`)
+    }
     return (
               <Item_css>      
-                <img src={require(`./../img/${imagen}`)}/>
-                {console.log(imagen)}
-                <p>{nombre}</p>
-                <p>Valor: ${precio}</p>            
+                <img src={require(`./../img/${libro.img}`)}/>
+                <p>{libro.nombre}</p>
+                <p>{libro.autor}</p>
+                <p>Valor: ${libro.precio}</p>    
+                <button onClick={handleClick}>ver mas</button>    
+                <ItemCount stock="4" initial="1" onAdd={onAdd}/>    
               </Item_css>             
     )
   }

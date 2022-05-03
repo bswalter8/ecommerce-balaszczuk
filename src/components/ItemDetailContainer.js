@@ -3,48 +3,50 @@ import styled from 'styled-components'
 import {useEffect} from 'react'
 import {useState } from 'react'
 import ItemDetail from './ItemDetail'
+import { useParams } from 'react-router-dom'
+import catalogoDB from "./../catalogo.json"
 
 const DetailContainer_css = styled.div`
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 200;
+    margin-top: 15vh;
     align-items: center;
     font-size: 3.5rem;
-    background-color: aqua;
+  
 `
 
 const ItemDetailContainer = () => {
 
     const [cargando, setCargando] = useState(true)
-    const [producto, setProducto] = useState({})
+    const [libro_elegido, setLibro] = useState({})
+    const {id} = useParams();
 
-    const productoDB =
-        {
-          "id": 1,
-          "nombre": "La Odisea",
-          "precio":250, 
-          "autor" : "Homero",
-          "categoria" : "clasicos",
-          "img" : "laodisea.jpeg",
-          "stock": 8,
-          "descripcion": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi ipsum ipsa, minus temporibus sint veritatis consectetur, ut recusandae libero qui cupiditate modi labore id consequatur perferendis quaerat repellat deleniti quos."
-      }
-      ;
 
     useEffect(()=>{
+      
+      if(id == undefined){
+        console.log("todo mal")
+      } else {
+       
         const getItem = new Promise((res)=>{
           setTimeout(() => {
-            res(productoDB)   
+            res(catalogoDB.find(libro => id == libro.id))   
           }, 2000);   
         })
         .then((contenido)=>{   
-          setProducto(contenido) 
+         
+          setLibro(contenido) 
           setCargando(false)
          
         })
         .catch((error)=>{
           console.log("salio todo mal")
-        })
-      },[])
+        })        
+      }
+        
+      },[id])
 
     if (cargando){
         return (
@@ -53,7 +55,7 @@ const ItemDetailContainer = () => {
     }else {
         return (
           <DetailContainer_css>
-            <ItemDetail id={producto.id} nombre={producto.nombre} descripcion={producto.descripcion} precio={producto.precio} imagen={producto.img}/>  
+            <ItemDetail libro={libro_elegido}/>  
           </DetailContainer_css>           
         )
 
