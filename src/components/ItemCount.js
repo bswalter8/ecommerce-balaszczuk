@@ -41,7 +41,6 @@ const ItemCount = ({stock, initial, onAdd }) => {
     stock = parseInt(stock)
     const [contador, setContador] = useState(initial);
     
-    const [confirmado, setConfirmado] = useState(false);
      
     
     const handleClick = (direction) =>{      
@@ -58,10 +57,6 @@ const ItemCount = ({stock, initial, onAdd }) => {
 
     const handleClick_add = () =>{
        onAdd(contador)       
-    }
-
-    const confirmacion = (boolean) =>{
-        setConfirmado(boolean)
     }
 
     return (          
