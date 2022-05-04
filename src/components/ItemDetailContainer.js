@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {useEffect} from 'react'
 import {useState } from 'react'
 import ItemDetail from './ItemDetail'
+import ItemCount from './ItemCount'
 import { useParams } from 'react-router-dom'
 import catalogoDB from "./../catalogo.json"
 
@@ -22,7 +23,8 @@ const ItemDetailContainer = () => {
     const [cargando, setCargando] = useState(true)
     const [libro_elegido, setLibro] = useState({})
     const {id} = useParams();
-
+    
+ 
 
     useEffect(()=>{
       
@@ -56,6 +58,7 @@ const ItemDetailContainer = () => {
         return (
           <DetailContainer_css>
             <ItemDetail libro={libro_elegido}/>  
+          
           </DetailContainer_css>           
         )
 

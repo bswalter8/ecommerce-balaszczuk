@@ -38,8 +38,8 @@ const Item =({libro, onAdd}) => {
                 <p>{libro.nombre}</p>
                 <p>{libro.autor}</p>
                 <p>Valor: ${libro.precio}</p>    
-                <button onClick={handleClick}>ver mas</button>    
-                <ItemCount stock="4" initial="1" onAdd={onAdd}/>    
+               <button onClick={handleClick}>ver mas</button>    
+           {/* <ItemCount stock="4" initial="1" onAdd={onAdd}/>*/}  
               </Item_css>             
     )
   }

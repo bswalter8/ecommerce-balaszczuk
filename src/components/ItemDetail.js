@@ -1,6 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import ItemCount from './ItemCount'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Item_css = styled.div`
     display : flex;
@@ -12,6 +16,7 @@ const Item_css = styled.div`
    border-radius: 2px;
    box-shadow: 1px 1px #e7cfcf;
    font-size: 1.1rem;
+   z-index: 0;
    margin: 2rem;
    padding: 0.8rem;
    & img{
@@ -22,13 +27,39 @@ const Item_css = styled.div`
 
 `
 const ItemDetail = ({libro}) => {
+
+  const [cantidadAdd, setCantidadAdd] = useState();
+  const [VerCart, setVerCart] = useState(false);
+
+  const addItem = (cant) =>{ 
+    if (!cant == 0){
+    setCantidadAdd(cant)
+    setVerCart(true)  
+    toast("Usted ha agregado"+' ' + cant + ' libros a su carrito de compras');
+    }
+}
+
+if (!VerCart){
+
   return (<Item_css>
           <img src={require(`./../img/${libro.img}`)}/>
           <p>Nombre: {libro.nombre}</p>
           <p>Precio: ${libro.precio}</p>
-
+          <ItemCount stock="4" initial="1"  onAdd={addItem} />
+        
         </Item_css>
-  )
+  )  
+} else{
+  return (<Item_css>
+    <img src={require(`./../img/${libro.img}`)}/>
+    <p>Nombre: {libro.nombre}</p>
+    <p>Precio: ${libro.precio}</p>
+    <p> Usted ha agregado {cantidadAdd} libro a su carrito de compras </p>
+    <ToastContainer />
+    <Link to={"/cart"}>Ver el carrito</Link>
+  </Item_css>
+) }
 }
+
 
 export default ItemDetail

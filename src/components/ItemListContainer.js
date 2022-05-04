@@ -59,9 +59,9 @@ const Main = (props) => {
     
   },[nombrecategoria])
 
-  const addItem = (cant) =>{ 
+  /*const addItem = (cant) =>{ 
 
-  }
+  }*/
 
   if (cargando){
     return (
@@ -72,7 +72,8 @@ const Main = (props) => {
   } else {
     return(
       <Main_css>      
-        <ItemList items={productos} onAdd={addItem}/>
+        {/*<ItemList items={productos} onAdd={addItem}/>*/}
+          <ItemList items={productos}/> 
       </Main_css>   
     )
   }

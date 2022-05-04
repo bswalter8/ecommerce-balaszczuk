@@ -19,7 +19,8 @@ const ItemList =({items, onAdd}) => {
               {items.map((libro, i)=>{
                 return (                
                     <li key={libro.id}> 
-                    <Item libro={libro} onAdd={onAdd}/>
+                   {/*<Item libro={libro} onAdd={onAdd}/> */} 
+                    <Item libro={libro}/>
                     </li>                                 
                )
                 })}
