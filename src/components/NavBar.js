@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import Carrito from './Carrito'
+import CartWidget from './CartWidget'
+/*import Carrito from './Carrito'*/
 
 
 const Navbar = (props) => {
-  console.log(props)
   if (props.header){
     return (
       <nav>
@@ -12,7 +12,7 @@ const Navbar = (props) => {
           <Link to={"/categorias/poesia"}>Poesia</Link>
           <Link to={"/categorias/modernos"}>Modernos</Link>
           <Link to={"/categorias/contemporaneos"}>Contemporaneos</Link>
-          <Carrito/>           
+          <CartWidget/>           
       </nav> 
 )
 
