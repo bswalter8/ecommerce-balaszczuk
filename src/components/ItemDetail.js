@@ -33,7 +33,7 @@ const ItemDetail = ({ libro }) => {
   const addItem = (cant) => {
     if (!cant == 0) {
       setCantidadAdd(cant);
-      addItemCart(libro);
+      addItemCart(libro, cant);
       setVerCart(true);
       toast(
         "Usted ha agregado" + " " + cant + " libros a su carrito de compras"
