@@ -47,7 +47,7 @@ const ItemDetail = ({ libro }) => {
         <img src={require(`./../img/${libro.img}`)} />
         <p>Nombre: {libro.nombre}</p>
         <p>Precio: ${libro.precio}</p>
-        <ItemCount stock="4" initial="1" onAdd={addItem} />
+        <ItemCount stock="4" initial={1} onAdd={addItem} textoBoton="Agregar al carrito" muestraStock={true}/>
       </Item_css>
     );
   } else {

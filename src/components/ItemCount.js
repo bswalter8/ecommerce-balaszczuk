@@ -19,6 +19,7 @@ const Items_css = styled.div`
     flex-direction: row;
     width: 100%;
     font-size: .9rem;
+    align-items: center;
     justify-content: space-around;  
     padding-bottom: .2rem;
    
@@ -31,17 +32,17 @@ const Button_css = styled.button`
     margin-left: .2rem;
     margin-right: .2rem;   
     width: max-content;
+    height: max-content;
     color: black;
     background-color: transparent;
 `
 
-const ItemCount = ({stock, initial, onAdd }) => {
+const ItemCount = ({stock, initial, onAdd, textoBoton, muestraStock }) => {
 
-    initial = parseInt(initial)    
+    //initial = parseInt(initial)    
     stock = parseInt(stock)
     const [contador, setContador] = useState(initial);
-    
-     
+
     
     const handleClick = (direction) =>{      
 
@@ -61,13 +62,14 @@ const ItemCount = ({stock, initial, onAdd }) => {
 
     return (          
         <Itemcount_css>
-            <p>Stock {stock}</p>
+           {muestraStock && <p>Stock {stock}</p>} 
+           {/* <p>Stock {stock}</p>*/}
             <Items_css>
                <Button_css onClick={() => handleClick("+")}>+</Button_css>
                <p>Cantidad {contador}</p>                  
                <Button_css onClick={() => handleClick("-")}>-</Button_css>
             </Items_css>
-            <Button_css onClick={handleClick_add} >Agregar al carrito</Button_css>
+            <Button_css onClick={handleClick_add} >{textoBoton}</Button_css>
            
         </Itemcount_css>                
     )

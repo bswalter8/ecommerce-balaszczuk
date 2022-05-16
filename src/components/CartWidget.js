@@ -1,5 +1,7 @@
 
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { contexto } from "./CartContext";
 import styled from 'styled-components'
 
 
@@ -13,10 +15,12 @@ const Carrito_css = styled.button`
 `
  
 const CartWidget = () => {
-    
+  const { numCart } = useContext(contexto);
   return (
     <Link to={"/cart"}>
         <Carrito_css/>   
+        {numCart != 0 && <p>{numCart}</p>}
+        
     </Link>
   )
 }
