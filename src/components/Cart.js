@@ -3,6 +3,8 @@ import { useContext, useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import CartItem from "./CartItem";
 import styled from "styled-components";
+import {db} from "./../App";
+import { collection } from "firebase/firestore";
 
 const Carrito_css = styled.main`
   width: 100vw; 

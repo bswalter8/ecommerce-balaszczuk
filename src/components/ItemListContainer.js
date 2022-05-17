@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import catalogoDB from "./../catalogo.json"
+import {db} from "./../App";
+import { collection, getDoc, doc, getDocs, addDoc, query, where } from 'firebase/firestore'
 
 const Main_css = styled.main`
     width: 100vw;
@@ -23,8 +25,57 @@ const Main = (props) => {
   const {nombrecategoria} = useParams();
 
   useEffect(()=>{
+
+
+    const librosCollection = collection(db,"libros");
     
+    
+
     if(nombrecategoria==undefined){
+      setCargando(true)
+      const consultaDB = getDocs(librosCollection);
+      consultaDB
+              .then((res)=>{
+                const libros = res.docs.map(doc => {
+                  const libroConID = {
+                    ...doc.data(),
+                    id :doc.id
+                  }
+                  return libroConID
+                })
+                setProductos(libros) 
+                setCargando(false)
+              })
+              .catch(()=>{
+                console.log("Algo salio mal");
+              })
+              .finally(
+                ()=>{
+                })  
+        }  else{
+          setCargando(true)
+         const queryDB = query(librosCollection,where("categoria","==",nombrecategoria));
+         console.log(queryDB)
+           const consultaDbQuery = getDocs(queryDB);
+          consultaDbQuery
+          .then((res)=>{
+            const libros = res.docs.map(doc => {
+              const libroConID = {
+                ...doc.data(),
+                id :doc.id
+              }
+              return libroConID
+            })
+            setCargando(false)
+            
+           setProductos(libros)        
+          })
+          .catch((error)=>{
+            console.log("salio todo mal")
+          })
+        
+        }
+ /*   if(nombrecategoria==undefined){
       setCargando(true)
       const promesa = new Promise((res)=>{
         setTimeout(() => {
@@ -54,14 +105,12 @@ const Main = (props) => {
         console.log("salio todo mal")
       })
     
-    }
+    }*/
       
     
   },[nombrecategoria])
 
-  /*const addItem = (cant) =>{ 
 
-  }*/
 
   if (cargando){
     return (

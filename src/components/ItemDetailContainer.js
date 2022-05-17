@@ -6,6 +6,8 @@ import ItemDetail from './ItemDetail'
 import ItemCount from './ItemCount'
 import { useParams } from 'react-router-dom'
 import catalogoDB from "./../catalogo.json"
+import {db} from "./../App";
+import { collection, getDoc, doc, getDocs, addDoc, query, where } from 'firebase/firestore'
 
 const DetailContainer_css = styled.div`
     display: flex;
@@ -28,7 +30,32 @@ const ItemDetailContainer = () => {
 
     useEffect(()=>{
       
+
       if(id == undefined){
+        console.log("todo mal")
+      } else {
+        const librosCollection = collection(db,"libros");
+        const resultadoLibro = doc(librosCollection,id);
+        const consultaLibro = getDoc(resultadoLibro);
+        consultaLibro
+        .then((res)=>{   
+         
+            const libroConID = {
+              ...res.data(),
+              id 
+            }
+           console.log(res)
+          setLibro(libroConID) 
+          setCargando(false)
+         
+        })
+        .catch((error)=>{
+          console.log("salio todo mal")
+        })        
+      }
+
+
+    /*  if(id == undefined){
         console.log("todo mal")
       } else {
        
@@ -46,7 +73,7 @@ const ItemDetailContainer = () => {
         .catch((error)=>{
           console.log("salio todo mal")
         })        
-      }
+      }*/
         
       },[id])
 
