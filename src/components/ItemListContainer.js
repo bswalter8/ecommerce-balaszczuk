@@ -27,7 +27,7 @@ const Main = (props) => {
   useEffect(()=>{
 
 
-    const librosCollection = collection(db,"libros");
+    const librosCollection = collection(db,"catalogoCompleto");
     
     
 

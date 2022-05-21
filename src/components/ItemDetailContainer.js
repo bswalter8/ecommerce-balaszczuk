@@ -34,7 +34,7 @@ const ItemDetailContainer = () => {
       if(id == undefined){
         console.log("todo mal")
       } else {
-        const librosCollection = collection(db,"libros");
+        const librosCollection = collection(db,"catalogoCompleto");
         const resultadoLibro = doc(librosCollection,id);
         const consultaLibro = getDoc(resultadoLibro);
         consultaLibro
