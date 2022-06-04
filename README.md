@@ -27,7 +27,8 @@
  * El usuario y el carrito utilizan dos lineas de componentes distintas, cada una con su propio contexto. El usuario utiliza los componentes: UserContext, User, OrdenList, UserOrdenlist, UserSignin, UsersWidget. El carrito utiliza los componentes: Cart, CartContext, CartItem, CartPrecioTotal, CartWidget. 
  * La compra final utiliza el componente FinalizarForm, es un formulario que incluye algunos de los datos obtenidos desde el User y otros nuevos ingresados nuevamente, como un direccion de envio y un telefono. 
  * En CartContext la funcion "setCant" lee el numero de items en el carrito y modifica de acuerdo a los items agregados. Dicha funcion es utilizada en el componente CartWidget
-    
+ * La cantidad en Stock siempre es de 4 y es ilustrativo, no esta implementado un manejo sobre el.
+
  ## Flujo de la aplicacion 
 
  [Video](https://drive.google.com/file/d/17Xsp3TV4mX1fhpxsqRl97VKapBVnNaOL/view?usp=sharing)
