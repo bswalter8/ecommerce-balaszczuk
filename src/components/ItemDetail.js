@@ -47,7 +47,13 @@ const ItemDetail = ({ libro }) => {
         <img src={require(`./../img/${libro.img}`)} />
         <p>Nombre: {libro.nombre}</p>
         <p>Precio: ${libro.precio}</p>
-        <ItemCount stock="4" initial={1} onAdd={addItem} textoBoton="Agregar al carrito" muestraStock={true}/>
+        <ItemCount
+          stock="4"
+          initial={1}
+          onAdd={addItem}
+          textoBoton="Agregar al carrito"
+          muestraStock={true}
+        />
       </Item_css>
     );
   } else {
@@ -57,7 +63,11 @@ const ItemDetail = ({ libro }) => {
         <p>Nombre: {libro.nombre}</p>
         <p>Precio: ${libro.precio}</p>
         <p> Usted ha agregado {cantidadAdd} libro a su carrito de compras </p>
-        <ToastContainer />
+        <ToastContainer position="top-center"
+            autoClose={1000}
+            hideProgressBar={true}
+            newestOnTop={true}
+            />
         <Link to={"/cart"}>Ver el carrito</Link>
       </Item_css>
     );

@@ -3,22 +3,21 @@ import { createContext, useState } from "react";
 export const contexto = createContext();
 const { Provider } = contexto;
 
-const CartContext = ({ defaultValue = [], children }) => {
-  const [carrito, setCarrito] = useState(defaultValue);
+const CartContext = ({children }) => {
   const [numCart, setNumCart] = useState(0);
-  
 
   const addItemCart = (libro, cant) => {
-    const carrito_provisorio = carrito.slice(0);
+    const carrito_provisorio = carrito();
+
     if (isInCart(libro.id)) {
       carrito_provisorio.forEach((e) => {
         if (e.id == libro.id) {
           e.cantidad += cant;
           e.valor_total += libro.precio * cant;
-          setCarrito(carrito_provisorio);
-          setNumCart(numCart + cant)
-          console.log(carrito);
-          console.log('numCart:  ' + numCart);
+
+          guardarLocalNumCarrito(numCart + cant);
+
+          guardarLocal(carrito_provisorio);
           return;
         }
       });
@@ -30,56 +29,96 @@ const CartContext = ({ defaultValue = [], children }) => {
       };
 
       carrito_provisorio.push(nuevo_libro);
-      setCarrito(carrito_provisorio);
-      setNumCart(numCart + cant)
-      console.log(carrito);
-      console.log('numCart:  ' + numCart);
+      guardarLocal(carrito_provisorio);
+
+      guardarLocalNumCarrito(numCart + cant);
     }
   };
-  
+
   const removeItemCart = (libro) => {
-    const carrito_provisorio = carrito.filter(e => {
-      if (e.id != libro.id){
-        return true
+    const carrito_provisorio = carrito().filter((e) => {
+      if (e.id != libro.id) {
+        return true;
       } else {
-        setNumCart(numCart - libro.cantidad)  
-        return false 
+        guardarLocalNumCarrito(numCart - libro.cantidad);
+        return false;
       }
     });
-    
-    setCarrito(carrito_provisorio);
-   
-  }
 
-  const clearCart = () =>{
-      setCarrito([]);
-      setNumCart(0);
-  }
+    guardarLocal(carrito_provisorio);
+  };
 
-  const setCant = (libro, cantidad) =>{
-    const carritoProvisorio = carrito.slice(0);
-    carritoProvisorio.forEach( e => {
-      if (e.id == libro.id){
-        e.cantidad < cantidad?  setNumCart(numCart + (cantidad - libro.cantidad)):  setNumCart(numCart - (libro.cantidad - cantidad))    
-        e.cantidad = cantidad;        
+  const clearCart = () => {
+    guardarLocal([]);
+
+    guardarLocalNumCarrito(0);
+  };
+
+  const setCant = (libro, cantidad) => {
+    const carritoProvisorio = carrito();
+    carritoProvisorio.forEach((e) => {
+      if (e.id == libro.id) {
+        if (e.cantidad < cantidad) {
+          guardarLocalNumCarrito(numCart + (cantidad - libro.cantidad));
+        } else {
+          guardarLocalNumCarrito(numCart - (libro.cantidad - cantidad));
+        }
+        e.cantidad = cantidad;
       }
-    })
-    setCarrito(carritoProvisorio);
-}
+    });
+    guardarLocal(carritoProvisorio);
+  };
 
   const isInCart = (id) => {
-    const libro_encontrado = carrito.find((e) => e.id === id);
-    if (libro_encontrado == undefined) {
-      return false;
-    } else {
-      return true;
+    const carritoProvisorio = carrito();
+    if (carritoProvisorio != null) {
+      const libro_encontrado = carritoProvisorio.find((e) => e.id === id);
+
+      if (libro_encontrado == undefined) {
+        return false;
+      } else {
+        return true;
+      }
     }
   };
 
+  const guardarLocal = (carrito) => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  };
 
-  return <Provider value={{ addItemCart, removeItemCart, setCant, clearCart, carrito, numCart }}>
-            {children}
-        </Provider>;
+  const guardarLocalNumCarrito = (num) => {
+    setNumCart(num);
+    localStorage.setItem("N_carrito", JSON.stringify(num));
+  };
+
+  const getLocalNumCarrito = () => {
+    setNumCart(JSON.parse(localStorage.getItem("N_carrito")));
+  };
+
+  const carrito = () => {
+    const libros = JSON.parse(localStorage.getItem("carrito"));
+    if (libros == null) {
+      return [];
+    } else {
+      return libros;
+    }
+  };
+
+  return (
+    <Provider
+      value={{
+        addItemCart,
+        removeItemCart,
+        setCant,
+        clearCart,
+        carrito,
+        numCart,
+        getLocalNumCarrito,
+      }}
+    >
+      {children}
+    </Provider>
+  );
 };
 
 export default CartContext;
