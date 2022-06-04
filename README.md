@@ -12,7 +12,7 @@
 * Firebase": "^9.8.1": La base de datos es Firebase. Al ser un proyecto pequeño se eligio Firebase por su facil manejo e implementacion. Toda la base de datos de productos, usuarios, ordenes de compra, es manejada por Firebase.
 * Styled-components: "5.3.5" : Todo el CSS esta manejado por esta libreria. Fue elegida por la practididad de tener un componente declarado que contenga todo el CSS y pueda utilizarse dentro de otro componente, agregando tambien faciildades de SASS.
 * React-scripts: "5.0.0": Scripts necesarios de React. 
-* Web-vitals": "^2.1.4"
+* Web-vitals": "^2.1.4": Scripts necesarios de React. 
 
 
 ## Paso de la instalacion 
@@ -30,7 +30,7 @@
     
  ## Flujo de la aplicacion 
 
- [https://drive.google.com/file/d/17Xsp3TV4mX1fhpxsqRl97VKapBVnNaOL/view?usp=sharing] Video Explitcativo 
+ [Video](https://drive.google.com/file/d/17Xsp3TV4mX1fhpxsqRl97VKapBVnNaOL/view?usp=sharing)
  
   
    
